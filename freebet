@@ -1,0 +1,176 @@
+ 
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freebet Euro Tour</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #0b025a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .banner-img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .rules-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .rule-card {
+            background: #1d079b;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .rule-card:hover {
+            transform: scale(1.02);
+        }
+
+        .rule-title {
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 12px;
+            transition: color 0.3s;
+        }
+
+        details[open] .rule-title {
+            color: #ffcc00;
+        }
+
+        .rule-content {
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 10px;
+            display: none;
+        }
+
+        details[open] .rule-content {
+            display: block;
+        }
+
+        .championships {
+            list-style: none;
+            padding: 0;
+        }
+
+        .championships li {
+            background: #0F1768;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .theme-toggle {
+            margin: 20px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ffcc00;
+            color: #000;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+
+        .dark-mode {
+            background-color: #fff;
+            color: #222;
+        }
+
+        .dark-mode .rule-card {
+            background: #ddd;
+            color: #222;
+        }
+
+        .dark-mode .championships li {
+            background: #bbb;
+        }
+        .destaque {
+          color: rgb(46, 34, 151);
+           font-weight: bold;
+          background-color: yellow;
+          padding: 2px 4px;
+          border-radius: 4px;
+        }
+          </style>
+
+
+    <div class="container">
+        <a href="/ptb">
+            <img src="https://static.sportingtech.com/hiperbetbrasil/upload_files/DESK_BANNER_FREEBET_V1.png" alt="Banner Euro Tour" class="banner-img">
+        </a>
+
+        <section class="rules-section">
+            <details class="rule-card">
+                <summary class="rule-title">Como ganhar a sua Freebet</summary>
+                <div class="rule-content">
+                    <p>Para participar, é necessário estar cadastrado na plataforma
+                      HiperBet e com o cadastro devidamente completo;</p>
+                 <p>Ao fazer uma aposta múltipla no valor mínimo de R$20,00 nos
+                      jogos da Copa do Brasil, entre os dias 06/08/25 e 07/08/2025,
+                      você ganha R$10,00 de Freebet válida para os jogos do
+                        Campeonato Brasileiro, entre os dias 09/08/25 e 10/08/25;</p>
+                     <p>A Odd mínima para a múltipla do bilhete é de 3.00;</p>
+                    <p>Quantidade mínima de jogos: 02.</p>
+                 
+                </div>
+            </details>
+
+            <details class="rule-card">
+                <summary class="rule-title">Regras e condições de uso da Freebet</summary>
+                <div class="rule-content">
+                    <p>A bonificação de R$10,00 deverá ser utilizada em bilhete único
+com múltipla de no mínimo 04 jogos.</p>
+                     <p>Odd mínima de seleção individual acima de 1.80.</p>  
+                     <p>A freebet tem validade até 10/08 para ser utilizada em uma
+aposta;</p>       
+                    <p>Não é permitido sacar o valor de R$10 concedidos da FREEBET;</p>      
+                    <p>O prêmio máximo obtido com o bônus é de R$500,00.</p>
+                    
+<p>Cada usuário poderá participar <span class="destaque">uma única vez</span> durante o
+período da campanha.</p>
+
+                    <p>Promoção válida entre os dias 06/08/2025 e 07/08/2025, até o
+início das partidas.</p>
+                    <p>Limitada a um único CPF e IP por participante. Contas duplicadas resultam na invalidação da promoção e retenção
+de saldo.</p>
+                    <p>A HiperBet se reserva o direito de suspender e/ou atualizar a
+campanha a qualquer momento, sem aviso prévio.</p>  
+                    </div>
+            </details>
+        </section>
+    </div>
+
+   
+
+

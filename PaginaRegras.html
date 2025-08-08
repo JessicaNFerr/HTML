@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigre Sortudo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #0b025a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .banner-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .rules-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .rule-card {
+            background: #1d079b;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .dark-mode .rule-card {
+            background: #222;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .rule-card:hover {
+            transform: scale(1.02);
+        }
+
+        .rule-title {
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 12px;
+            transition: color 0.3s;
+        }
+
+        details[open] .rule-title {
+            color: #ffcc00;
+        }
+
+        .rule-content {
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 10px;
+            display: none;
+        }
+
+        details[open] .rule-content {
+            display: block;
+        }
+
+        .theme-toggle {
+            margin: 20px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #ffcc00;
+            color: #000;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+
+        /* Estilos do Card de Missão */
+        .mission-status-card {
+            background: #1d079b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .mission-status-card:hover {
+            transform: scale(1.02);
+        }
+
+        .dark-mode .mission-status-card {
+            background: #222;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .mission-card-header {
+            margin-bottom: 15px;
+        }
+
+        .mission-card-title {
+            color: #ffcc00;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .mission-name {
+            color: #f0f0f0;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .mission-status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .status-completed {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-active {
+            background: #2196f3;
+            color: white;
+        }
+
+        .status-locked {
+            background: #f44336;
+            color: white;
+        }
+
+        .mission-progress-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-label {
+            color: #ffcc00;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .progress-percentage {
+            color: #f0f0f0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #ffcc00;
+            border-radius: 5px;
+            transition: width 0.8s ease;
+        }
+
+        .mission-id-info {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .mission-id-label {
+            color: #ffcc00;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .mission-id-value {
+            color: #f0f0f0;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .loading-mission {
+            color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .error-mission {
+            color: #ff6b6b;
+            padding: 20px;
+        }
+
+        .mission-retry-btn {
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .mission-retry-btn:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Primeiro Banner -->
+        <a href="/ptb/games/casino/detail/normal/27942">
+            <img src="https://static.sportingtech.com/hiperbetbrasil/upload_files/DESKTOP_BANNER_CAMPANHA_TIRGRESORTUDO_1.jpg" 
+                 alt="Banner Hiper Turbinada" class="banner-img">
+        </a>
+
+        <!-- Card de Status da Missão -->
+        <div class="mission-status-card">
+            <!-- ID fixo da missão (invisível) -->
+            <input type="hidden" id="missionId" value="11991">
+
+            <div class="mission-card-header">
+                <h3 class="mission-card-title">🎯 STATUS DA MISSÃO</h3>
+            </div>
+
+            <!-- Estado de Loading -->
+            <div id="missionLoading" class="loading-mission">
+                <p>⏳ Carregando dados da missão...</p>
+                <button class="mission-retry-btn" onclick="loadMissionStatus()">
+                    🔄 Tentar Novamente
+                </button>
+            </div>
+
+            <!-- Estado de Erro -->
+            <div id="missionError" class="error-mission" style="display: none;">
+                <p>❌ Missão não encontrada ou erro ao carregar</p>
+            </div>
+
+            <!-- Dados da Missão -->
+            <div id="missionData" style="display: none;">
+                <div class="mission-name" id="missionName">Nome da Missão</div>
+                
+                <div>
+                    <span id="missionStatus" class="mission-status-badge">Status</span>
+                </div>
+
+                <div class="mission-progress-section">
+                    <div class="progress-header">
+                        <span class="progress-label">Progresso</span>
+                        <span class="progress-percentage" id="progressPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="mission-id-info">
+                    <div class="mission-id-label">ID do Usuário</div>
+                    <div class="mission-id-value" id="userIdDisplay">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Caixa de Regras -->
+        <section class="rules-section">
+            <details class="rule-card" open>
+                <summary class="rule-title">Como garantir seus Giros Grátis:</summary>
+                <hr>
+                <div class="rule-content">
+                    <p> 1. Para participar, é necessário estar cadastrado na plataforma da <b>HiperBet</b> e com o cadastro devidamente completo</p>
+                    <p> 2. Ao jogar o valor <b>R$20,00</b> no jogo <b>Tigre Sortudo</b>, você recebe 100 rodadas extras para o mesmo jogo.</p>
+                      <p> 3. As rodadas extras são válidas exclusivamente para o jogo Big Bass Bonanza.</p>
+                        <p>4. Os giros serão no valor de R$0,10</b></p>
+                    <p>Pronto! Os Giros Grátis serão liberados automaticamente em até 24 horas após a conclusão do cadastro. </p>
+                </div>
+             </div>   
+             <div class="container">        
+                <!-- Caixa de Regras -->
+                <section class="rules-section">
+                    <details class="rule-card" open>
+                        <summary class="rule-title">Regras e Condições:</summary>
+                        <hr>
+                        <div class="rule-content">
+                            <p> Promoção válida do dia 05/07 as 10h00, até às 23h59 do dia 06/07. </p>
+                            <p> Cada usuário poderá participar uma única vez durante o período da campanha.</p>
+                             <p>Limitada a um único CPF e IP por participante. Contas duplicadas resultam na invalidação da promoção e retenção de saldo. Sendo assim, só será possivel fazer o resgate dos giros uma única vez.</p>
+                            <p>A HiperBet se reserva o direito de suspender a campanha a qualquer momento, sem aviso prévio.</p>
+                        </div>
+
+        </section>
+     <!-- Botão JOGUE AGORA -->
+     <div style="margin: 30px 0; text-align: center;">
+      <a href="/ptb/games/casino/detail/normal/27942" style="text-decoration: none;">
+        <button style="background: #1d079b; color: #FFCC00; font-size: 22px; font-weight: bold; padding: 16px 40px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: background 0.3s, transform 0.2s;">JOGUE AGORA</button>
+    </a>
+</div>
+
+    </div>
+
+    <script>
+        // Função para determinar o status da missão
+        function getMissionStatus(mission) {
+            if (mission.is_completed) return 'completed';
+            if (mission.is_locked) return 'locked';
+            return 'active';
+        }
+
+        // Função para obter o texto do status
+        function getStatusText(status) {
+            const statusMap = {
+                'completed': '✅ Concluída',
+                'active': '🔄 Em Andamento',
+                'locked': '🔒 Bloqueada'
+            };
+            return statusMap[status] || 'Desconhecido';
+        }
+
+        // Função para calcular porcentagem de progresso
+        function calculateProgress(mission) {
+            if (mission.is_completed) return 100;
+            if (!mission.progress || mission.progress === 0) return 0;
+            return Math.min(mission.progress, 100);
+        }
+
+        // Função para mostrar os dados da missão
+        function displayMission(mission, userId) {
+            const status = getMissionStatus(mission);
+            const progress = calculateProgress(mission);
+
+            // Atualizar elementos
+            document.getElementById('missionName').textContent = mission.name || 'Missão sem nome';
+            document.getElementById('userIdDisplay').textContent = userId || 'Não logado';
+            document.getElementById('progressPercentage').textContent = `${progress}%`;
+            
+            // Atualizar status
+            const statusElement = document.getElementById('missionStatus');
+            statusElement.textContent = getStatusText(status);
+            statusElement.className = `mission-status-badge status-${status}`;
+            
+            // Atualizar barra de progresso
+            const progressBar = document.getElementById('progressBar');
+            setTimeout(() => {
+                progressBar.style.width = `${progress}%`;
+            }, 300);
+
+            // Mostrar dados da missão
+            document.getElementById('missionData').style.display = 'block';
+        }
+
+        // Função principal otimizada para carregar missão e usuário (ID fixo: 19268)
+        function loadMissionStatus() {
+            const missionId = 11991; // ID fixo da missão
+
+            // Mostrar loading e esconder outros estados
+            document.getElementById('missionLoading').style.display = 'block';
+            document.getElementById('missionError').style.display = 'none';
+            document.getElementById('missionData').style.display = 'none';
+
+            // Verificar se a API Smartico está disponível
+            if (typeof _smartico === 'undefined') {
+                document.getElementById('missionLoading').style.display = 'none';
+                document.getElementById('missionError').style.display = 'block';
+                document.getElementById('missionError').innerHTML = '<p>❌ Você não está logado! Faça login para acessar.</p>';
+                return;
+            }
+
+            if (!_smartico.api || !_smartico.api.getMissions || !_smartico.getUserID) {
+                document.getElementById('missionLoading').style.display = 'none';
+                document.getElementById('missionError').style.display = 'block';
+                document.getElementById('missionError').innerHTML = '<p>❌ Você não está logado! Faça login para acessar.</p>';
+                return;
+            }
+
+            // Buscar missão e obter ID do usuário na mesma operação
+            _smartico.api.getMissions().then((missions) => {
+                const specificMission = missions.find(mission => mission.id === missionId);
+                const userId = _smartico.getUserID(); // Obter ID do usuário logado
+                
+                document.getElementById('missionLoading').style.display = 'none';
+                
+                if (specificMission) {
+                    displayMission(specificMission, userId);
+                } else {
+                    document.getElementById('missionError').style.display = 'block';
+                    document.getElementById('missionError').innerHTML = '<p>❌ Você não está logado! Faça login para acessar.</p>';
+                }
+                
+            }).catch((error) => {
+                document.getElementById('missionLoading').style.display = 'none';
+                document.getElementById('missionError').style.display = 'block';
+                document.getElementById('missionError').innerHTML = `<p>❌ Você não está logado! Faça login para acessar.</p>`;
+            });
+        }
+
+        // Carregar automaticamente quando a página carrega (ID fixo: 19268)
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(loadMissionStatus, 1000);
+        });
+
+        // Também tentar carregar quando a janela carrega completamente
+        window.addEventListener('load', function() {
+            setTimeout(loadMissionStatus, 2000);
+        });
+
+        // Forçar carregamento após 3 segundos (fallback)
+        setTimeout(function() {
+            if (document.getElementById('missionLoading').style.display !== 'none') {
+                loadMissionStatus();
+            }
+        }, 3000);
+    </script>
+
+  </body>
+</html>
